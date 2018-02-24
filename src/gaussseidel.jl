@@ -1,10 +1,12 @@
+using Optim
+
 f(x) = (1 - x[1])^2 + 100 * (x[2] - x[1]^2)^2;
 
 function gaussseidel(f::Function, x0::Vector, h::Float64, δ::Float64 = 1e-6)
     k::Int64 = 0
     x = x0
     n::Int64 = length(x)
-    fsearch(α) = f(y-α*e[j]);
+    fsearch(α) = f(y - α * e[j]);
     while k < 500
         y = x
         for j = 1:n

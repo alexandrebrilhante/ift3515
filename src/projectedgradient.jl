@@ -1,5 +1,13 @@
 using ForwardDiff
 
+f(x::Vector) = -10 * x[1]^2 + 10 * x[2]^2 + 4 * sin(x[1] * x[2]) - 2 * x[1] + x[1]^4;
+
+g(x) = ForwardDiff.gradient(f, x);
+
+l = [0.0; 0.0]
+
+u = [10.0; 10.0]
+
 function armijo(f::Function, dfx::Vector, x::Vector, d::Vector,
                 α::Float64 = 1.0, β1::Float64 = 1e-4, β2::Float64 = 0.9)
     s = β1 * dot(dfx, d)
@@ -38,12 +46,4 @@ function projectedgradient(f::Function, g::Function, x0::Vector,
     @show x, k
 end
 
-f(x::Vector) = -10 * x[1]^2 + 10 * x[2]^2 + 4 * sin(x[1] * x[2]) - 2 * x[1] + x[1]^4
-
-g = x -> ForwardDiff.gradient(f, x);
-
-l = [0.0; 0.0]
-
-u = [10.0; 10.0]
-
-projectedgradient(f, g, zeros(2), l, u)
+@show projectedgradient(f, g, zeros(2), l, u)

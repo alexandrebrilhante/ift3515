@@ -10,7 +10,7 @@ function gradientdescent(f::Function, g::Function, x0::Vector,
     x = x0
     n::Int64 = length(x)
     dfx = ones(n)
-    fsearch(α) = f(x-α*dfx);
+    fsearch(α) = f(x - α * dfx);
     while norm(dfx) > δ && k < 500
         α = Optim.minimizer(optimize(fsearch, 0, h, GoldenSection()))
         dfx = g(x)

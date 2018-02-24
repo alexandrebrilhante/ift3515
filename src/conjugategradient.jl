@@ -4,13 +4,13 @@ b = [0; 1]
 
 x = [1; 1]
 
-function conjugategradient(A::Matrix, b::Vector, x0::Vector, δ::Float64= 1e-6)
+function conjugategradient(A::Matrix, b::Vector, x0::Vector, δ::Float64 = 1e-6)
     n::Int64 = length(x0)
     x = x0
     g = b + A * x
     d = -g
     k::Int64 = 0
-    while dot(g, g) > δ
+    while norm(g) > δ
         Ad = A * d
         normd = dot(d, Ad)
         α = -dot(d, g) / normd

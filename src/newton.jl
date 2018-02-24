@@ -12,7 +12,7 @@ function newton(f::Function, g::Function, H::Function,
     x = x0
     n::Int6 = length(x)
     dfx = 1.0
-    while dot(dfx, dfx) > δ && k < 500
+    while norm(dfx) > δ && k < 500
         dfx = g(x)
         d2fx = H(x)
         x -= d2fx \ dfx
